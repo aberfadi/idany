@@ -14,12 +14,12 @@ export async function createUserAccount(user: INewUser) {
       ID.unique(),
       user.email,
       user.password,
-      user.name
+      user.username
     );
 
     if (!newAccount) throw Error;
 
-    const avatarUrl = avatars.getInitials(user.name);
+    const avatarUrl = avatars.getInitials(user.username);
 
     const newUser = await saveUserToDB({
       accountId: newAccount.$id,
